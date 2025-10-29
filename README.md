@@ -16,21 +16,21 @@ El sistema sigue una arquitectura **RESTful** y un enfoque basado en capas (enti
 3. 🚧**Fase 3 – Repositorios**  
    Interfaces `JpaRepository` y consultas personalizadas.
 
-4. 🚧**Fase 4 – Servicios**  
+4. 🔜**Fase 4 – Servicios**  
    Implementar lógica de negocio con transacciones.
 
-5. 🚧**Fase 5 – API REST**  
+5. 🔜**Fase 5 – API REST**  
    Controladores con endpoints CRUD.
 
-6. 🚧**Fase 6 – DTOs y validación**
+6. 🔜**Fase 6 – DTOs y validación**
 
-7. 🚧**Fase 7 – Manejo global de errores**
+7. 🔜**Fase 7 – Manejo global de errores**
 
-8. 🚧**Fase 8 – Filtros y utilidades**
+8. 🔜**Fase 8 – Filtros y utilidades**
 
-9. 🚧**Fase 9 – Documentación y tests**
+9. 🔜**Fase 9 – Documentación y tests**
 
-10. 🚧**Fase 10 – Seguridad y multiusuario (futuro)**
+10. 🔜**Fase 10 – Seguridad y multiusuario (futuro)**
 
 ---
 
