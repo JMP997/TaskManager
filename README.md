@@ -1,96 +1,169 @@
-# Fase 1 – Preparación y configuración
+# 🗂️ TaskManager
 
-1. Crear proyecto nuevo con Spring Boot (Web, JPA, Lombok).
-2. Elegir BD de arranque:
-    - **MySQL** (si ya lo tienes a mano).
-3. `application.properties`:
-    - MySQL:
+**TaskManager** es una aplicación web desarrollada con **Spring Boot** que permite gestionar proyectos y tareas de forma sencilla y organizada.  
+El sistema sigue una arquitectura **RESTful** y un enfoque basado en capas (entidades, repositorios, servicios y controladores).
 
-        ```
-        spring.datasource.url=jdbc:mysql://localhost:3306/taskmanager_db?createDatabaseIfNotExist=true&serverTimezone=UTC
-        spring.datasource.username=root
-        spring.datasource.password=tu_password
-        spring.jpa.hibernate.ddl-auto=update
-        spring.jpa.show-sql=true
-        spring.jpa.properties.hibernate.format_sql=true
-        
-        ```
+---
 
-4. Arrancar la app y comprobar que levanta.
+## 🚀 Características principales
 
-## Fase 2 – Modelo de datos (Entidades + Relaciones)
+- Creación y gestión de **proyectos**.
+- CRUD completo de **tareas** asociadas a cada proyecto.
+- Filtros por estado, prioridad y fecha límite.
+- Validación de datos y manejo global de errores.
+- Documentación automática con **Swagger / OpenAPI**.
+- Preparada para futura integración de **usuarios y seguridad (JWT)**.
 
-1. Paquete `entity`.
-2. Entidades mínimas:
-    - `Proyecto` (id, nombre único, descripción, timestamps).
-    - `Tarea` (id, título, descripción, estado[PENDING/IN_PROGRESS/DONE], prioridad[LOW/MEDIUM/HIGH], fechaLimite, timestamps).
-3. Relaciones:
-    - `Proyecto` ↔ `Tarea` (**1:N**).
-4. Semilla opcional con un `CommandLineRunner` que cree un **Proyecto “Personal”** si no existe.
+---
 
-## Fase 3 – Repositorios (Acceso a datos)
+## 🛠️ Tecnologías utilizadas
 
-1. Paquete `repository`.
-2. `ProyectoRepository` y `TareaRepository` (interfaces `JpaRepository`).
-3. Métodos de consulta útiles:
-    - `ProyectoRepository.existsByNombre(...)`, `findByNombre(...)`.
-    - `TareaRepository.findByProyectoId(...)`, y filtros por `estado`/`prioridad`.
+- **Java 21**
+- **Spring Boot 3.x**
+    - Spring Web
+    - Spring Data JPA
+    - Spring Validation
+- **Lombok**
+- **MySQL** / **H2 (en memoria para pruebas)**
+- **Maven**
+- **Swagger (springdoc-openapi)**
 
-## Fase 4 – Servicios (Lógica de negocio)
+---
 
-1. Paquete `service`.
-2. Interfaces: `ProyectoService`, `TareaService`.
-3. Implementaciones `@Service` con transacciones:
-    - CRUD de Proyecto.
-    - CRUD de Tarea vinculado a un `proyectoId`.
+## 🧱 Estructura del proyecto
 
-## Fase 5 – API REST (Controladores)
+```
+src/
+ └── main/
+     ├── java/com/taskmanager/
+     │   ├── controller/     → Controladores REST
+     │   ├── dto/            → Objetos de transferencia (DTOs)
+     │   ├── entity/         → Entidades JPA
+     │   ├── exception/      → Gestión global de errores
+     │   ├── repository/     → Interfaces JpaRepository
+     │   ├── service/        → Lógica de negocio
+     │   └── TaskManagerApplication.java
+     └── resources/
+         ├── application.properties
+         └── static / templates (si aplica)
+```
 
-1. Paquete `controller`.
-2. Endpoints:
-    - `/api/proyectos` (CRUD completo).
-    - `/api/proyectos/{proyectoId}/tareas` (CRUD de tareas anidadas).
-3. Probar con Postman/Insomnia o `curl`.
+---
 
-## Fase 6 – DTOs y Validación
+## ⚙️ Configuración de la base de datos
 
-1. Paquete `dto`.
-2. DTOs de entrada/salida para Proyecto y Tarea.
-3. Validaciones con `@Valid`, `@NotBlank`, `@Size`, etc.
-4. Mappers manuales o MapStruct (si quieres).
+Por defecto, el proyecto utiliza **MySQL**.  
+Puedes cambiar fácilmente a H2 en memoria para desarrollo rápido.
 
-## Fase 7 – Manejo global de errores
+### 🔹 MySQL
 
-1. Paquete `exception`.
-2. `ResourceNotFoundException`, `BadRequestException`, etc.
-3. `@ControllerAdvice` con `@ExceptionHandler` y payload consistente.
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/taskmanager_db?createDatabaseIfNotExist=true&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=tu_password
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+```
 
-## Fase 8 – Persistencia y utilidades
+### 🔹 H2 (opcional)
 
-1. Paginación/ordenación en listados.
-2. Filtros por estado, prioridad y fecha límite.
-3. Búsqueda por texto (título/descr.).
+```properties
+spring.datasource.url=jdbc:h2:mem:taskdb;DB_CLOSE_DELAY=-1;MODE=MySQL
+spring.datasource.driver-class-name=org.h2.Driver
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.show-sql=true
+spring.h2.console.enabled=true
+```
 
-## Fase 9 – Documentación y calidad
+---
 
-1. Swagger/OpenAPI (springdoc-openapi).
-2. Logs y formateo SQL.
-3. Tests: `@DataJpaTest` y tests de controlador con `@WebMvcTest`.
+## ▶️ Ejecución del proyecto
 
-## Fase 10 – Seguridad (a futuro)
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/tuusuario/TaskManager.git
+   cd TaskManager
+   ```
+2. Compila y ejecuta:
+   ```bash
+   mvn spring-boot:run
+   ```
+   o bien:
+   ```bash
+   ./mvnw spring-boot:run
+   ```
 
-1. Cuando decidas multiusuario:
-    - Introducir entidad `Usuario`.
-    - Añadir `usuario_id` en `Proyecto`.
-    - Endpoints anidados por usuario si aplica.
-2. Spring Security/JWT más adelante.
+3. Accede a la aplicación:
+    - API base: [http://localhost:8080](http://localhost:8080)
+    - Consola H2: [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+    - Swagger UI: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
-## Orden recomendado
+---
 
-1. Crear proyecto + configuración BD.
-2. Entidades y relación 1:N.
-3. Repositorios y prueba rápida (semilla opcional).
-4. Servicios y controladores CRUD.
-5. DTOs + validación + manejo de errores.
-6. Paginación/filtros + Swagger.
-7. Más adelante, seguridad y multiusuario.
+## 📡 Endpoints principales
+
+| Método | Endpoint | Descripción |
+|--------|-----------|--------------|
+| **GET** | `/api/proyectos` | Listar todos los proyectos |
+| **POST** | `/api/proyectos` | Crear nuevo proyecto |
+| **GET** | `/api/proyectos/{id}` | Obtener proyecto por ID |
+| **PUT** | `/api/proyectos/{id}` | Actualizar proyecto |
+| **DELETE** | `/api/proyectos/{id}` | Eliminar proyecto |
+| **GET** | `/api/proyectos/{proyectoId}/tareas` | Listar tareas de un proyecto |
+| **POST** | `/api/proyectos/{proyectoId}/tareas` | Crear tarea dentro de un proyecto |
+| **PUT** | `/api/proyectos/{proyectoId}/tareas/{id}` | Actualizar tarea |
+| **DELETE** | `/api/proyectos/{proyectoId}/tareas/{id}` | Eliminar tarea |
+
+---
+
+## 🧩 Validación y manejo de errores
+
+- Validaciones con anotaciones como `@NotBlank`, `@Size`, `@NotNull`.
+- Excepciones personalizadas:
+    - `ResourceNotFoundException`
+    - `BadRequestException`
+- Manejadas globalmente con `@ControllerAdvice`.
+
+---
+
+## 📋 Plan de trabajo (Roadmap)
+
+1. **Fase 1 – Configuración inicial**  
+   Crear proyecto, configuración MySQL y comprobación de arranque.
+
+2. **Fase 2 – Modelo de datos**  
+   Entidades `Proyecto` y `Tarea` con relación 1:N.
+
+3. **Fase 3 – Repositorios**  
+   Interfaces `JpaRepository` y consultas personalizadas.
+
+4. **Fase 4 – Servicios**  
+   Implementar lógica de negocio con transacciones.
+
+5. **Fase 5 – API REST**  
+   Controladores con endpoints CRUD.
+
+6. **Fase 6 – DTOs y validación**
+
+7. **Fase 7 – Manejo global de errores**
+
+8. **Fase 8 – Filtros y utilidades**
+
+9. **Fase 9 – Documentación y tests**
+
+10. **Fase 10 – Seguridad y multiusuario (futuro)**
+
+---
+
+## 👨‍💻 Autor
+
+Desarrollado por **Jesús Martín Pineda**  
+📍 Granada, España  
+💻 Proyecto educativo y personal didáctico **Spring Boot**, **JPA** y **arquitectura RESTful**.
+
+---
+
+## 📝 Licencia
+
+Este proyecto se distribuye bajo la licencia **MIT**. Puedes usarlo, modificarlo y compartirlo libremente.
