@@ -1,11 +1,11 @@
-# 🗂️ TaskManager
+# TaskManager
 
 **TaskManager** es una aplicación web desarrollada con **Spring Boot** que permite gestionar proyectos y tareas de forma sencilla y organizada.  
 El sistema sigue una arquitectura **RESTful** y un enfoque basado en capas (entidades, repositorios, servicios y controladores).
 
 ---
 
-## 🚀 Características principales
+## Características principales
 
 - Creación y gestión de **proyectos**.
 - CRUD completo de **tareas** asociadas a cada proyecto.
@@ -16,7 +16,7 @@ El sistema sigue una arquitectura **RESTful** y un enfoque basado en capas (enti
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+## Tecnologías utilizadas
 
 - **Java 21**
 - **Spring Boot 3.x**
@@ -30,7 +30,7 @@ El sistema sigue una arquitectura **RESTful** y un enfoque basado en capas (enti
 
 ---
 
-## 🧱 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 src/
@@ -50,7 +50,7 @@ src/
 
 ---
 
-## ⚙️ Configuración de la base de datos
+## Configuración de la base de datos
 
 Por defecto, el proyecto utiliza **MySQL**.  
 Puedes cambiar fácilmente a H2 en memoria para desarrollo rápido.
@@ -78,7 +78,7 @@ spring.h2.console.enabled=true
 
 ---
 
-## ▶️ Ejecución del proyecto
+## Ejecución del proyecto
 
 1. Clona el repositorio:
    ```bash
@@ -101,7 +101,7 @@ spring.h2.console.enabled=true
 
 ---
 
-## 📡 Endpoints principales
+## Endpoints principales
 
 | Método | Endpoint | Descripción |
 |--------|-----------|--------------|
@@ -117,7 +117,7 @@ spring.h2.console.enabled=true
 
 ---
 
-## 🧩 Validación y manejo de errores
+## Validación y manejo de errores
 
 - Validaciones con anotaciones como `@NotBlank`, `@Size`, `@NotNull`.
 - Excepciones personalizadas:
@@ -127,7 +127,7 @@ spring.h2.console.enabled=true
 
 ---
 
-## 📋 Plan de trabajo (Roadmap)
+## Plan de trabajo (Roadmap)
 
 1. **Fase 1 – Configuración inicial**  
    Crear proyecto, configuración MySQL y comprobación de arranque.
@@ -156,14 +156,14 @@ spring.h2.console.enabled=true
 
 ---
 
-## 👨‍💻 Autor
+## Autor
 
 Desarrollado por **Jesús Martín Pineda**  
-📍 Granada, España  
-💻 Proyecto educativo y personal didáctico **Spring Boot**, **JPA** y **arquitectura RESTful**.
+    Granada, España  
+    Proyecto educativo y personal didáctico **Spring Boot**, **JPA** y **arquitectura RESTful**.
 
 ---
 
-## 📝 Licencia
+## Licencia
 
 Este proyecto se distribuye bajo la licencia **MIT**. Puedes usarlo, modificarlo y compartirlo libremente.
