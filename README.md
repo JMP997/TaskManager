@@ -20,7 +20,7 @@ TaskManager permite crear proyectos y asignarles tareas de manera sencilla, ofre
 | Tipo | Tecnología |
 |------|-------------|
 | Backend | **Spring Boot 3.4.2** |
-| Lenguaje | **Java 17 / 21** |
+| Lenguaje | **Java 21** |
 | Dependencias clave | Spring Web, Spring Data JPA, Lombok |
 | Base de datos inicial | **H2 Database** (en memoria) |
 | Build system | **Maven** |
