@@ -113,4 +113,4 @@ Esto simplifica la estructura inicial y facilita la expansión posterior.
 
 **Jesús Martín Pineda**  
 Desarrollador web & data enthusiast  
-[LinkedIn](https://www.linkedin.com/in/jesus-martin-pineda) · [GitHub](https://github.com/jesusmpineda)
+[LinkedIn](https://www.linkedin.com/in/mpj97/) · [GitHub](https://github.com/jesusmpineda)
