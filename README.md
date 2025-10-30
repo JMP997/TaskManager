@@ -13,10 +13,10 @@ El sistema sigue una arquitectura **RESTful** y un enfoque basado en capas (enti
 2. ✅**Fase 2 – Modelo de datos**  
    Entidades `Proyecto` y `Tarea` con relación 1:N.
 
-3. 🚧**Fase 3 – Repositorios**  
+3. ✅**Fase 3 – Repositorios**  
    Interfaces `JpaRepository` y consultas personalizadas.
 
-4. 🔜**Fase 4 – Servicios**  
+4. 🚧**Fase 4 – Servicios**  
    Implementar lógica de negocio con transacciones.
 
 5. 🔜**Fase 5 – API REST**  
