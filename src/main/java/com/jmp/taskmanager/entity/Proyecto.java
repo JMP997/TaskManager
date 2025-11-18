@@ -24,10 +24,6 @@ public class Proyecto {
     @Column(length = 1000)
     String descripcion;
 
-    public enum Estado {PENDIENTE, EN_PROGRESO, COMPLETADO}
-    @Enumerated(EnumType.STRING)
-    private Estado estado;
-
     // Relacion 1:N con Tarea
     @OneToMany(mappedBy = "proyecto",
             cascade= CascadeType.ALL,
